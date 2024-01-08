@@ -1,6 +1,17 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿<CascadingAuthenticationState>                                                               @* // *@
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        @* <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" /> *@            
+
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"> @* // *@
+                <NotAuthorized>                                                               @* // *@
+                    @* <BlazorGameApp.Client.Pages.Login></BlazorGameApp.Client.Pages.Login> *@
+                    <Login></Login>
+                    @* <h2>Whoops!</h2>
+                    It seems like you have not logged in *@
+                </NotAuthorized>
+
+            </AuthorizeRouteView>
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
@@ -10,3 +21,5 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+</CascadingAuthenticationState>

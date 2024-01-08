@@ -1,0 +1,11 @@
+﻿@inject IBananaService BananaService
+
+<button @onclick="IncreaseBanannasCount" class="btn btn-info"><span class="oi oi-plus"></span></button>
+
+@code {
+
+    public void IncreaseBanannasCount( )
+    {
+        BananaService.AddBananas(10);
+    }
+}
